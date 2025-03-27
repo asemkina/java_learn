@@ -5,13 +5,13 @@ import ru.stqa.geometry.figure.Square;
 
 public class Geometry {
     public static void main(String[] args) {
-        Square.printSquareArea (5.);
-        Square.printSquareArea (8.);
-        Square.printSquareArea (100.);
+        Square.printSquareArea (51.);
+        Square.printSquareArea (80.);
+        Square.printSquareArea (10.);
 
         Rectangle.printRectangleArea(5.,9.);
         Rectangle.printRectangleArea(7,6);
-        Rectangle.printRectangleArea(4,2);
+        Rectangle.printRectangleArea(4.,2.);
 
         }
 
