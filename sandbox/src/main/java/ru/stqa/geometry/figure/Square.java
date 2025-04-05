@@ -1,16 +1,23 @@
 package ru.stqa.geometry.figure;
 
 public class Square {
-    public static void printSquareArea(double side) {
+    private double side;
 
-        String text = String.format("Площадь квадрата со стороной %f = %f", side, Area(side));
+    public Square(double side) {
+        this.side = side;
+    }
+
+    public static void printSquareArea(Square s) {
+
+        String text = String.format("Площадь квадрата со стороной %f = %f", s.side, s.side);
         System.out.println(text);
     }
 
-    public static double Area(double a) {
-        return a * a;
+    public double Area() {
+        return this.side * this.side;
     }
 
-    public static double Perimeter(double a) {
-    return a+a+a+a; }
+    public double Perimeter() {
+        return 4 * this.side;
+    }
 }

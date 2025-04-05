@@ -6,8 +6,8 @@ public class Rectangle {
         System.out.println(text);
     }
 
-    private static double RectangleArea(double a, double b)
-    {
+    private static double RectangleArea(double a, double b) {
         return a * b;
     }
+
 }
