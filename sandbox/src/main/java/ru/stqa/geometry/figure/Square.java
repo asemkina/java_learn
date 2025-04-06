@@ -1,10 +1,12 @@
 package ru.stqa.geometry.figure;
 
 public class Square {
-    private double side;
+    private double side;    ///описание структуры объекта Square, находится обязательно внутри класса/
+                            /// каждый объект структуры Square будет иметь свойство side
 
-    public Square(double side) {
-        this.side = side;
+    public Square(double side) {/// конструктор для объекта Square (alt+enter в тесте для автоматич создания метода)
+        this.side = side;///присвоение свойства внутри текущего объекта
+        /// розовый side - структура робъекта, белый side - свойство функции
     }
 
     public static void printSquareArea(Square s) {
@@ -13,7 +15,7 @@ public class Square {
         System.out.println(text);
     }
 
-    public double Area() {
+    public double Area() {/// нет слова statiс, значит функция вызывается в объекте, данные она берет из объекта, а не из указанных параметров
         return this.side * this.side;
     }
 

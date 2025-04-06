@@ -9,8 +9,8 @@ public class Hello {
         System.out.println(6/2);
         System.out.println("Привет"+", мир");
 
-    var configFile = new File("sandbox/build.gradle");
+    var configFile = new File("sandbox/build.gradle"); ///создание объекта класса File
         System.out.println(configFile.getAbsolutePath());
-        System.out.println(configFile.exists());
+        System.out.println(configFile.exists());///метод exists вызывается в объекте configFile
     }
 }

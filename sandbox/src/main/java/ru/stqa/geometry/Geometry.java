@@ -6,7 +6,7 @@ import ru.stqa.geometry.figure.Triangle;
 
 public class Geometry {
     public static void main(String[] args) {
-        Square.printSquareArea(new Square(51.0));
+        Square.printSquareArea(new Square(51.0));///передаем в функции объект Square с его свойствами
         Square.printSquareArea(new Square(80.));
         Square.printSquareArea(new Square(10.));
 

@@ -7,9 +7,12 @@ public class SquareTests {
 
     @Test
     void canCalculateArea() {
-        var s =new Square(5.0);
-        double result = s.Area();
+        var s = new Square(5.0);///вызываем конструктор объекта Square
+        double result = s.Area();///вызываем метод Area в этом объекте
         Assertions.assertEquals(25.0, result);
     }
-
+    @Test
+    void canCalculatePerimeter(){
+        Assertions.assertEquals(16,new Square(4.0).Perimeter());
+    }
 }

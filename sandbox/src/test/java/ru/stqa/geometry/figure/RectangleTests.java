@@ -3,7 +3,7 @@ package ru.stqa.geometry.figure;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class PerimeterTests {
+public class RectangleTests {
 
     @Test /// аннотацтия для теста
         void canCalculatePerimeter(){ /// функция ничего не выводит?
