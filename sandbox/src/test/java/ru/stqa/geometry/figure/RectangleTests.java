@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 public class RectangleTests {
 
     @Test
-    void canCalculateArea(){
-        var result = Rectangle.Area(4.,5.);
-        Assertions.assertEquals(20,result);
+    void canCalculateArea(){/// задание функции для расчета площади
+        var result = Rectangle.Area(4.,5.);///задание переменной result
+        Assertions.assertEquals(20,result); ///задание ожидаемого результата и расчет
     }
 
     @Test

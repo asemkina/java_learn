@@ -6,7 +6,7 @@ public class Square {
 
     public Square(double side) {/// конструктор для объекта Square (alt+enter в тесте для автоматич создания метода)
         this.side = side;///присвоение свойства внутри текущего объекта
-        /// розовый side - структура робъекта, белый side - свойство функции
+        /// розовый side - структура объекта, белый side - свойство функции
     }
 
     public static void printSquareArea(Square s) {
@@ -20,6 +20,7 @@ public class Square {
     }
 
     public double Perimeter() {
+
         return 4 * this.side;
     }
 }
