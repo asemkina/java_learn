@@ -2,17 +2,20 @@ package ru.stqa.geometry.figure;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
+/// тесты с функциями
 public class RectangleTests {
 
-    @Test /// аннотацтия для теста
-        void canCalculatePerimeter(){ /// функция ничего не выводит?
-        var result = Triangle.Perimeter(2,3,4); ///задание переменной result
-        Assertions.assertEquals(9, result); ///задание ожидаемого результата и расчет
+    @Test
+    void canCalculateArea(){
+        var result = Rectangle.Area(4.,5.);
+        Assertions.assertEquals(20,result);
     }
 
     @Test
-        void canCalculateArea(){
-        Assertions.assertEquals(20,Triangle.Area(4,5));
+    void canCalculatePerimeter(){
+        Assertions.assertEquals(20, Rectangle.Perimeter(4.,6.));
     }
+
+
 }
+

@@ -2,11 +2,11 @@ package ru.stqa.geometry.figure;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
+/// тесты с объектами
 public class SquareTests {
 
     @Test
-    void canCalculateArea() {
+    void canCalculateArea() {/// тестовая функция ничего не возвращает, поэтому класс void
         var s = new Square(5.0);///вызываем конструктор объекта Square
         double result = s.Area();///вызываем метод Area в этом объекте
         Assertions.assertEquals(25.0, result);
