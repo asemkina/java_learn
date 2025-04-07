@@ -1,8 +1,8 @@
 package ru.stqa.geometry.figure;
 
-public class Square{
+public record Square (double side){
 
-    private double side;    ///описание структуры объекта Square, находится обязательно внутри класса/
+    ///private double side;    ///описание структуры объекта Square, находится обязательно внутри класса/
                             /// каждый объект структуры Square будет иметь свойство side
 
     public Square(double side) {/// конструктор для объекта Square (alt+enter в тесте для автоматич создания метода)

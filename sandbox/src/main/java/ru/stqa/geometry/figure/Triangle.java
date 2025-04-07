@@ -1,9 +1,8 @@
 package ru.stqa.geometry.figure;
 
-public class Triangle {
-    private double side1;
-    private double side2;
-    private double side3;
+import java.util.Objects;
+
+public record Triangle (double side1, double side2, double side3){
 
     public Triangle (double side1, double side2, double side3){
         this.side1 = side1;
@@ -16,10 +15,27 @@ public class Triangle {
         }
         {
             if ((side1 + side2) < side3 || (side1 + side3) < side2 || (side3 + side2) < side1){
-                throw new IllegalArgumentException("Rectangle sides should be wright");
+                throw new IllegalArgumentException("Rectangle sides should be wright size");
             }
         }
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Triangle triangle = (Triangle) o;
+        return (Double.compare(this.side1, triangle.side1) == 0 && Double.compare(this.side2, triangle.side2) == 0 && Double.compare(this.side3, triangle.side3) == 0)
+                || (Double.compare(this.side1, triangle.side1) == 0 && Double.compare(this.side2, triangle.side3) == 0 && Double.compare(this.side3, triangle.side2) == 0)
+                || (Double.compare(this.side1, triangle.side2) == 0 && Double.compare(this.side2, triangle.side1) == 0 && Double.compare(this.side3, triangle.side3) == 0)
+                || (Double.compare(this.side1, triangle.side2) == 0 && Double.compare(this.side2, triangle.side3) == 0 && Double.compare(this.side3, triangle.side1) == 0)
+                || (Double.compare(this.side1, triangle.side3) == 0 && Double.compare(this.side2, triangle.side1) == 0 && Double.compare(this.side3, triangle.side2) == 0)
+                || (Double.compare(this.side1, triangle.side3) == 0 && Double.compare(this.side2, triangle.side2) == 0 && Double.compare(this.side3, triangle.side1) == 0);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(side1, side2, side3);
     }
 
     public static void printTrianglePerimeter(Triangle t) {

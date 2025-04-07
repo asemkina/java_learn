@@ -1,6 +1,21 @@
 package ru.stqa.geometry.figure;
 
+import java.util.Objects;
+
 public record Rectangle(double a, double b) {
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Rectangle rectangle = (Rectangle) o;///приведение типов
+        return (Double.compare(this.a, rectangle.a) == 0 && Double.compare(this.b, rectangle.b) == 0)
+                || (Double.compare(this.b, rectangle.a) == 0 && Double.compare(this.a, rectangle.b) == 0);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(a, b);
+    }
 
     public Rectangle {
         if (a < 0 || b < 0){
