@@ -37,7 +37,7 @@ public class SquareTests {
 
     @Test
     void testNonEquality() {
-        var s1 = new Square(5.0);
+        var s1 = new Square(4.0);
         var s2 = new Square(5.0);
         Assertions.assertNotEquals(s1, s2);
     }
