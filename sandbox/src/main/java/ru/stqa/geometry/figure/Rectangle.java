@@ -1,6 +1,13 @@
 package ru.stqa.geometry.figure;
 
-public class Rectangle {
+public record Rectangle(double a, double b) {
+
+    public Rectangle {
+        if (a < 0 || b < 0){
+            throw new IllegalArgumentException("Rectangle side should not be negative");
+        }
+    }
+
     public static void printRectangleArea(double a, double b) {
         var text = String.format("Площадь прямоугольника со сторонами %f и %f = %f", a, b, Area(a, b));
         System.out.println(text);

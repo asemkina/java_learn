@@ -1,14 +1,19 @@
 package ru.stqa.geometry.figure;
 
-public class Square {
+public class Square{
+
     private double side;    ///описание структуры объекта Square, находится обязательно внутри класса/
                             /// каждый объект структуры Square будет иметь свойство side
 
     public Square(double side) {/// конструктор для объекта Square (alt+enter в тесте для автоматич создания метода)
-        this.side = side;///присвоение свойства внутри текущего объекта
+    this.side = side;///присвоение свойства внутри текущего объекта
         /// розовый side - структура объекта, белый side - свойство функции
+          {
+            if (side < 0) {
+                throw new IllegalArgumentException("Square side should not be negative");
+            }
+        }
     }
-
     public static void printSquareArea(Square s) {
 
         String text = String.format("Площадь квадрата со стороной %f = %f", s.side, s.side);
