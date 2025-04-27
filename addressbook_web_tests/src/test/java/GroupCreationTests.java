@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -19,7 +20,11 @@ public class GroupCreationTests {
             driver.findElement(By.xpath("//input[@value=\'Login\']")).click();
         }
     }
-
+    @AfterEach
+    public void tearDown() {
+        driver.findElement(By.linkText("Logout")).click();
+        driver.quit();
+    }
     @Test
     public void CanCreateGroup() {
         if (!isElementPresent(By.name("new"))) {
