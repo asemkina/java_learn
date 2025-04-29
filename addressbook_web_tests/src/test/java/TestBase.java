@@ -1,3 +1,4 @@
+import model.GroupData;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
@@ -8,14 +9,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class TestBase {
     protected static WebDriver driver;
 
-    protected static void CreateGroup(String Group1, String Group_name, String Group_footer) {
+    protected static void CreateGroup(GroupData group) {
         driver.findElement(By.name("new")).click();
         driver.findElement(By.name("group_name")).click();
-        driver.findElement(By.name("group_name")).sendKeys(Group1);
+        driver.findElement(By.name("group_name")).sendKeys(group.group1());
         driver.findElement(By.name("group_header")).click();
-        driver.findElement(By.name("group_header")).sendKeys(Group_name);
+        driver.findElement(By.name("group_header")).sendKeys(group.name());
         driver.findElement(By.name("group_footer")).click();
-        driver.findElement(By.name("group_footer")).sendKeys(Group_footer);
+        driver.findElement(By.name("group_footer")).sendKeys(group.footer());
         driver.findElement(By.name("submit")).click();
         driver.findElement(By.linkText("group page")).click();
     }
