@@ -16,11 +16,27 @@ public class GroupCreationTests extends TestBase {
     }
 
     @Test
-    public void CanCreateGroupWithNameOnly() {
+    public void CanCreateGroupWithTitleOnly() {
         openGroupsPage();
         var emptyGroup = new GroupData();
         var groupWithTitle = emptyGroup.withTitle("some title");
         CreateGroup(groupWithTitle);
+    }
+
+    @Test
+    public void CanCreateGroupWithNameOnly() {
+        openGroupsPage();
+        var emptyGroup = new GroupData();
+        var groupWithName = emptyGroup.withName("some name");
+        CreateGroup(groupWithName);
+    }
+
+    @Test
+    public void CanCreateGroupWithFooterOnly() {
+        openGroupsPage();
+        var emptyGroup = new GroupData();
+        var groupWithFooter = emptyGroup.withFooter("some footer");
+        CreateGroup(groupWithFooter);
     }
 }
 
