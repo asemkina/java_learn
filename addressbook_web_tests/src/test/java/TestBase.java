@@ -1,3 +1,4 @@
+import model.ContactData;
 import model.GroupData;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,6 +27,12 @@ public class TestBase {
         driver.findElement(By.name("delete")).click();
         driver.findElement(By.linkText("group page")).click();
     }
+
+    protected static void removeContact() {
+        driver.findElement(By.name("selected[]")).click();
+        driver.findElement(By.xpath("//input[@value=\'Delete\']")).click();
+        ///driver.switchTo().alert().accept();}
+}
 
     @BeforeEach
     public void setUp() {
@@ -63,4 +70,28 @@ public class TestBase {
     protected boolean isGroupPresent() {
         return isElementPresent(By.name("selected[]"));
     }
+
+    protected void createContact(ContactData contact) {
+        driver.findElement(By.linkText("add new")).click();
+        driver.findElement(By.name("firstname")).click();
+        driver.findElement(By.name("firstname")).sendKeys(contact.firstname());
+        driver.findElement(By.name("lastname")).click();
+        driver.findElement(By.name("lastname")).sendKeys(contact.lastname());
+        driver.findElement(By.name("address")).click();
+        driver.findElement(By.name("address")).sendKeys(contact.address());
+        driver.findElement(By.name("home")).click();
+        driver.findElement(By.name("home")).sendKeys(contact.home());
+        driver.findElement(By.name("email")).click();
+        driver.findElement(By.name("email")).sendKeys(contact.email());
+        driver.findElement(By.xpath("(//input[@name=\'submit\'])[2]")).click();
+        driver.findElement(By.linkText("home page")).click();
+    }
+
+    protected void openContactsPage() {
+        if (!isElementPresent(By.xpath("(//input[@name=\'submit\'])[2]"))) {
+            driver.findElement(By.linkText("add new")).click();
+        }
+    }
+
+    protected boolean isContactPresent() { return isElementPresent(By.name("selected[]")); }
 }

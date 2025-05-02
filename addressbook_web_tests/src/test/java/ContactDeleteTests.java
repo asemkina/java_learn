@@ -1,12 +1,13 @@
+import model.ContactData;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 
-public class ContactDeleteTests extends TestBase{
+public class ContactDeleteTests extends TestBase {
 
     @Test
     public void delete() {
-        driver.findElement(By.id("MassCB")).click();
-        driver.findElement(By.xpath("//input[@value=\'Delete\']")).click();
-        driver.switchTo().alert().accept();
+        if (!isContactPresent()) {
+            createContact(new ContactData("jh", "lknjnj", "ддтж", "ьлщьл", "отоо"));
+        }
+        removeContact();
     }
 }
