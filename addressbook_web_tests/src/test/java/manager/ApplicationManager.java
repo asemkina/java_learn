@@ -1,41 +1,17 @@
+package manager;
+
 import model.ContactData;
 import model.GroupData;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class TestBase {
+public class ApplicationManager {
     protected static WebDriver driver;
 
-    protected static void CreateGroup(GroupData group) {
-        driver.findElement(By.name("new")).click();
-        driver.findElement(By.name("group_name")).click();
-        driver.findElement(By.name("group_name")).sendKeys(group.group1());
-        driver.findElement(By.name("group_header")).click();
-        driver.findElement(By.name("group_header")).sendKeys(group.name());
-        driver.findElement(By.name("group_footer")).click();
-        driver.findElement(By.name("group_footer")).sendKeys(group.footer());
-        driver.findElement(By.name("submit")).click();
-        driver.findElement(By.linkText("group page")).click();
-    }
-
-    protected static void removeGroup() {
-        driver.findElement(By.name("selected[]")).click();
-        driver.findElement(By.name("delete")).click();
-        driver.findElement(By.linkText("group page")).click();
-    }
-
-    protected static void removeContact() {
-        driver.findElement(By.name("selected[]")).click();
-        driver.findElement(By.xpath("//input[@value=\'Delete\']")).click();
-        ///driver.switchTo().alert().accept();}
-}
-
-    @BeforeEach
-    public void setUp() {
+    public void init() {
         if (driver == null) {
             driver = new ChromeDriver();
             Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
@@ -46,13 +22,7 @@ public class TestBase {
         }
     }
 
-    @AfterEach
-    public void tearDown() {
-        driver.findElement(By.linkText("Logout")).click();
-        driver.quit();
-    }
-
-    protected boolean isElementPresent(By locator) {
+    public boolean isElementPresent(By locator) {
         try {
             driver.findElement(locator);
             return true;
@@ -61,17 +31,27 @@ public class TestBase {
         }
     }
 
-    protected void openGroupsPage() {
+    @AfterEach
+    public void tearDown() {
+        driver.findElement(By.linkText("Logout")).click();
+        driver.quit();
+    }
+
+    public void openGroupsPage() {
         if (!isElementPresent(By.name("new"))) {
             driver.findElement(By.linkText("groups")).click();
         }
     }
 
-    protected boolean isGroupPresent() {
-        return isElementPresent(By.name("selected[]"));
+    public void openContactsPage() {
+        if (!isElementPresent(By.xpath("(//input[@name=\'submit\'])[2]"))) {
+            driver.findElement(By.linkText("add new")).click();
+        }
     }
 
-    protected void createContact(ContactData contact) {
+    public boolean isContactPresent() { return isElementPresent(By.name("selected[]")); }
+
+    public void createContact(ContactData contact) {
         driver.findElement(By.linkText("add new")).click();
         driver.findElement(By.name("firstname")).click();
         driver.findElement(By.name("firstname")).sendKeys(contact.firstname());
@@ -87,11 +67,31 @@ public class TestBase {
         driver.findElement(By.linkText("home page")).click();
     }
 
-    protected void openContactsPage() {
-        if (!isElementPresent(By.xpath("(//input[@name=\'submit\'])[2]"))) {
-            driver.findElement(By.linkText("add new")).click();
-        }
+    public boolean isGroupPresent() {
+        return isElementPresent(By.name("selected[]"));
     }
 
-    protected boolean isContactPresent() { return isElementPresent(By.name("selected[]")); }
+    public void removeContact() {
+        driver.findElement(By.name("selected[]")).click();
+        driver.findElement(By.xpath("//input[@value=\'Delete\']")).click();
+        ///driver.switchTo().alert().accept();}
+}
+
+    public void removeGroup() {
+        driver.findElement(By.name("selected[]")).click();
+        driver.findElement(By.name("delete")).click();
+        driver.findElement(By.linkText("group page")).click();
+    }
+
+    public void CreateGroup(GroupData group) {
+        driver.findElement(By.name("new")).click();
+        driver.findElement(By.name("group_name")).click();
+        driver.findElement(By.name("group_name")).sendKeys(group.group1());
+        driver.findElement(By.name("group_header")).click();
+        driver.findElement(By.name("group_header")).sendKeys(group.name());
+        driver.findElement(By.name("group_footer")).click();
+        driver.findElement(By.name("group_footer")).sendKeys(group.footer());
+        driver.findElement(By.name("submit")).click();
+        driver.findElement(By.linkText("group page")).click();
+    }
 }
