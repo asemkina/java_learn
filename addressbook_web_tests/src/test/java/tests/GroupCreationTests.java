@@ -7,38 +7,27 @@ public class GroupCreationTests extends TestBase {
 
     @Test
     public void CanCreateGroup() {
-        app.openGroupsPage();
-        app.CreateGroup(new GroupData("Group1", "Group name", "Group footer"));
+        app.groups().CreateGroup(new GroupData("Group1", "Group name", "Group footer"));
     }
 
     @Test
     public void CanCreateGroupWithEmptyName() {
-        app.openGroupsPage();
-        app.CreateGroup(new GroupData());
+        app.groups().CreateGroup(new GroupData());
     }
 
     @Test
     public void CanCreateGroupWithTitleOnly() {
-        app.openGroupsPage();
-        var emptyGroup = new GroupData();
-        var groupWithTitle = emptyGroup.withTitle("some title");
-        app.CreateGroup(groupWithTitle);
+        app.groups().CreateGroup(new GroupData().withTitle("some title"));
     }
 
     @Test
     public void CanCreateGroupWithNameOnly() {
-        app.openGroupsPage();
-        var emptyGroup = new GroupData();
-        var groupWithName = emptyGroup.withName("some name");
-        app.CreateGroup(groupWithName);
+        app.groups().CreateGroup(new GroupData().withName("some name"));
     }
 
     @Test
     public void CanCreateGroupWithFooterOnly() {
-        app.openGroupsPage();
-        var emptyGroup = new GroupData();
-        var groupWithFooter = emptyGroup.withFooter("some footer");
-        app.CreateGroup(groupWithFooter);
+        app.groups().CreateGroup(new GroupData().withFooter("some footer"));
     }
 }
 

@@ -7,38 +7,32 @@ public class ContactCreationTests extends TestBase {
 
     @Test
     public void canCreateСontact() {
-        app.openContactsPage();
-        app.createContact(new ContactData("Анна", "Семкина", "ул.Богдана Хмельницкого, 3-62", "89191990515", "semkina.an@yandex.ru"));
+        app.contacts().createContact(new ContactData("Анна", "Семкина", "ул.Богдана Хмельницкого, 3-62", "89191990515", "semkina.an@yandex.ru"));
         }
 
     @Test
     public void canCreateСontactWithFirstNameOnly() {
-        app.openContactsPage();
-        app.createContact(new ContactData().withName("Anna"));
+        app.contacts().createContact(new ContactData().withName("Anna"));
     }
 
     @Test
     public void canCreateСontactWithLastNameOnly() {
-        app.openContactsPage();
-        app.createContact(new ContactData().withLastName("Semkina"));
+        app.contacts().createContact(new ContactData().withLastName("Semkina"));
     }
 
     @Test
     public void canCreateСontactWithAddressOnly() {
-        app.openContactsPage();
-        app.createContact(new ContactData().withAddress("Bryansk"));
+        app.contacts().createContact(new ContactData().withAddress("Bryansk"));
     }
 
     @Test
     public void canCreateСontactWithPhoneOnly() {
-        app.openContactsPage();
-        app.createContact(new ContactData().withPhone("9999999999"));
+        app.contacts().createContact(new ContactData().withPhone("9999999999"));
     }
 
     @Test
     public void canCreateСontactWithEmailOnly() {
-        app.openContactsPage();
-        app.createContact(new ContactData().withEmail("Anna@yandex.ru"));
+        app.contacts().createContact(new ContactData().withEmail("Anna@yandex.ru"));
     }
 
 }
