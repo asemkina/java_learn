@@ -12,4 +12,12 @@ public class ContactDeleteTests extends TestBase {
         }
         app.contacts().removeContact();
     }
+
+    @Test
+    public void deleteAllContacts() {
+        if (app.contacts().getCount() == 0) {
+            app.contacts().createContact(new ContactData("jh", "lknjnj", "ддтж", "ьлщьл", "отоо"));
+        }
+        app.contacts().removeAllContacts();
+    }
 }

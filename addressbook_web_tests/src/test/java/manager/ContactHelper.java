@@ -68,4 +68,13 @@ public class ContactHelper extends HelperBase{
     public int getCount() {
         return manager.driver.findElements(By.name("selected[]")).size();
     }
+
+    public void removeAllContacts() {
+        selectAllContacts();
+        click(By.xpath("//input[@value=\'Delete\']"));
+    }
+
+    private void selectAllContacts() {
+        click(By.id("MassCB"));
+    }
 }
