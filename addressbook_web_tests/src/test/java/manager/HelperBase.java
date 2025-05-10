@@ -19,4 +19,8 @@ public class HelperBase {
         manager.driver.findElement(locator).clear();
         manager.driver.findElement(locator).sendKeys(text);
     }
+
+    protected void homePageRemoveContact() {
+        manager.driver.switchTo().alert().accept();
+    }
 }
