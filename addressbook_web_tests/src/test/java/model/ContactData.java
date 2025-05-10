@@ -6,7 +6,7 @@ public record ContactData(String id, String firstname, String lastname, String a
         this ("", "","","","","");
     }
 
-    public ContactData FirstName(String firstname) {
+    public ContactData withFirstName(String firstname) {
         return new ContactData(this.id, firstname, this.lastname, this.address, this.home, this.email);
     }
 

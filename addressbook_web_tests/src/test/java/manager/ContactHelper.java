@@ -87,10 +87,10 @@ public class ContactHelper extends HelperBase{
         var contacts = new ArrayList<ContactData>();
         var trs = manager.driver.findElements(By.name("entry"));
         for (var tr : trs){
-            var firstName = tr.getText();
+            ///var firstName = tr.getText();
             var checkbox = tr.findElement(By.name("selected[]"));
             var id = checkbox.getDomAttribute("value");
-            contacts.add(new ContactData().withId(id).FirstName(firstName));
+            contacts.add(new ContactData().withId(id).withFirstName("").withLastName("").withAddress("").withPhone("").withEmail(""));//.withFirstName(firstName));
         }
         return contacts;
     }
