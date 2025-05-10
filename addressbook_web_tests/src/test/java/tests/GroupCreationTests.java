@@ -1,5 +1,6 @@
 package tests;
 
+import common.CommonFunctions;
 import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,9 +23,9 @@ public class GroupCreationTests extends TestBase {
         }
         for (int i=0; i<5; i++) { ///переменная i является счетчиком, на каждой итерации к i прибавляется 1(инкремент)
             result.add(new GroupData()
-                    .withTitle(randomString(i * 5))
-                    .withName(randomString(i * 5))
-                    .withFooter(randomString(i * 5)));
+                    .withTitle(CommonFunctions.randomString(i * 5))
+                    .withName(CommonFunctions.randomString(i * 5))
+                    .withFooter(CommonFunctions.randomString(i * 5)));
         }
         return result;
     }
