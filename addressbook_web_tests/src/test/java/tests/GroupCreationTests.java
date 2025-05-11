@@ -66,9 +66,9 @@ public class GroupCreationTests extends TestBase {
     @ParameterizedTest
     @MethodSource("singleRandomGroup")
     public void CanCreateGroups(GroupData group) {
-        var oldGroups = app.jdbc().getGroupList();
+        var oldGroups = app.hbm().getGroupList();
         app.groups().CreateGroup(group);
-        var newGroups = app.jdbc().getGroupList();
+        var newGroups = app.hbm().getGroupList();
         Comparator<GroupData> compareById = (o1, o2) -> {
             return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
         };
@@ -80,7 +80,7 @@ public class GroupCreationTests extends TestBase {
         expectedList.sort(compareById);
         Assertions.assertEquals(newGroups, expectedList);
 
-        ///var newUiGroups = app.groups().getList(); ... доп проверка в ui
+        ///var newUiGroups = app.groups().getList(); /// доп проверка в ui
     }
 
     public static List<GroupData> negativeGroupProvider() {
