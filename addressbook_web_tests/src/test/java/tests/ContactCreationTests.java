@@ -1,11 +1,10 @@
 package tests;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import common.CommonFunctions;
 import model.ContactData;
+import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -91,6 +90,23 @@ public class ContactCreationTests extends TestBase {
                 .withLastName(CommonFunctions.randomString(10))
                 .withPhoto(CommonFunctions.randomFile("src/test/resources/images"));
         app.contacts().createContact(contact);
+    }
+
+    @Test
+    void canCreateContactInGroup() {
+        var contact = new ContactData()
+                .withFirstName(CommonFunctions.randomString(5))
+                .withLastName(CommonFunctions.randomString(10))
+                .withPhoto(CommonFunctions.randomFile("src/test/resources/images"));
+        if (app.hbm().getGroupCount() == 0 ) {
+            app.hbm().CreateGroup(new GroupData("", "Group1", "Group name", "Group footer"));
+        }
+        var group = app.hbm().getGroupList().get(0);
+
+        var oldRelated = app.hbm().getContactInGroup(group);
+        app.contacts().createContact(contact, group);
+        var newRelated = app.hbm().getContactInGroup(group);
+        Assertions.assertEquals(oldRelated.size()+1, newRelated.size());
     }
 
 }
