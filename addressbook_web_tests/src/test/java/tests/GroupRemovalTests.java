@@ -14,11 +14,11 @@ public class GroupRemovalTests extends TestBase {
         if (app.groups().getCount() == 0 ) {
             app.groups().CreateGroup(new GroupData("", "Group1", "Group name", "Group footer"));
         }
-        var oldGroups = app.groups().getList();
+        var oldGroups = app.jdbc().getGroupList();
         var rnd = new Random();
         var index = rnd.nextInt(oldGroups.size());
         app.groups().removeGroup(oldGroups.get(index));
-        var newGroups = app.groups().getList();
+        var newGroups = app.jdbc().getGroupList();
         var expectedList = new ArrayList<>(oldGroups);
         expectedList.remove(index);
         Assertions.assertEquals(newGroups, expectedList);
