@@ -31,4 +31,17 @@ public class JdbcHelper extends HelperBase {
         return groups; ///возвращаем список
 
     }
+
+    public void checkConsistency() {
+        try (var conn = DriverManager.getConnection("jdbc:mysql://localhost/addressbook", "root", "");///устанавливаем соединение с БД
+             var statement = conn.createStatement(); /// закрываем соединение с БД
+             var result = statement.executeQuery("SELECT * FROM address_in_groups ag left join addressbook ad on ag.id=ad.id WHERE ad.id is null;")) ///выполняем запрос всех записей в таблице групп
+        /// анализ результатов запроса
+        {  if (result.next()) { /// если есть хоть какой-нибудь результат по запросу Select, то:
+           throw new IllegalStateException("DB is corrupted");
+        }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
