@@ -64,7 +64,7 @@ public class ContactCreationTests extends TestBase {
         var oldContacts = app.contacts().getListContact();
         app.contacts().createContact(contact);
         var newContacts = app.contacts().getListContact();
-        Comparator<ContactData> compareById = (Comparator<ContactData>) (o1, o2) -> {
+        Comparator<ContactData> compareById = (o1, o2) -> {
             return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
         };
         newContacts.sort(compareById);

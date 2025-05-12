@@ -17,7 +17,7 @@ public class ContactHelper extends HelperBase{
     public void createContact(ContactData contact) {
         openContactsPage();
         click(By.linkText("add new"));
-        fillContactForm(contact);
+        fillContactFormWithPhoto(contact);
         click(By.xpath("(//input[@name=\'submit\'])[2]"));
         returnToHomePage();
     }
@@ -25,7 +25,7 @@ public class ContactHelper extends HelperBase{
     public void createContactInGroup(ContactData contact, GroupData group) {
         openContactsPage();
         click(By.linkText("add new"));
-        fillContactForm(contact);
+        fillContactFormWithPhoto(contact);
         selectGroup(group);
         click(By.xpath("(//input[@name=\'submit\'])[2]"));
         returnToHomePage();
@@ -36,6 +36,7 @@ public class ContactHelper extends HelperBase{
     }
 
     public void removeContact(ContactData contact) {
+        openContactsPage();
         selectContact(contact);
         click(By.xpath("//input[@value=\'Delete\']"));
         returnToHomePage();
@@ -49,7 +50,7 @@ public class ContactHelper extends HelperBase{
 
     public void ModifyContact(ContactData ModifiedContact) {
         initModifyContact();
-        fillContactForm(ModifiedContact);
+        fillContactFormWithoutPhoto(ModifiedContact);
         submitContactModification();
         returnToHomePage();
     }
@@ -68,7 +69,20 @@ public class ContactHelper extends HelperBase{
         click(By.name("update"));
     }
 
-    private void fillContactForm(ContactData contact) {
+    private void fillContactFormWithoutPhoto(ContactData contact) {
+        click(By.name("firstname"));
+        type(By.name("firstname"),contact.firstname());
+        click(By.name("lastname"));
+        type(By.name("lastname"),contact.lastname());
+        click(By.name("address"));
+        type(By.name("address"),contact.address());
+        click(By.name("home"));
+        type(By.name("home"),contact.home());
+        click(By.name("email"));
+        type(By.name("email"),contact.email());
+    }
+
+    private void fillContactFormWithPhoto(ContactData contact) {
         click(By.name("firstname"));
         type(By.name("firstname"),contact.firstname());
         click(By.name("lastname"));
