@@ -22,7 +22,7 @@ public class ContactHelper extends HelperBase{
         returnToHomePage();
     }
 
-    public void createContact(ContactData contact, GroupData group) {
+    public void createContactInGroup(ContactData contact, GroupData group) {
         openContactsPage();
         click(By.linkText("add new"));
         fillContactForm(contact);
