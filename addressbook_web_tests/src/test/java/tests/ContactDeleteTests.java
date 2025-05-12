@@ -26,8 +26,8 @@ public class ContactDeleteTests extends TestBase {
 
     @Test
     public void deleteAllContacts() {
-        if (app.contacts().getCount() == 0) {
-            app.contacts().createContact(new ContactData("", "jh", "lknjnj", "ддтж", "ьлщьл", "отоо", ""));
+        if (app.hbm().getContactCount() == 0) {
+            app.hbm().СreateContact(new ContactData("", "jh", "lknjnj", "ддтж", "ьлщьл", "отоо", ""));
         }
         app.contacts().removeAllContacts();
     }

@@ -82,10 +82,24 @@ public class HibernateHelper extends HelperBase {
         });
     }
 
+    public long getContactCount() {
+        return sessionFactory.fromSession(session -> {
+            return session.createQuery("select count (*) from ContactRecord", long.class).getSingleResult();
+        });
+    }
+
     public void CreateGroup(GroupData groupData) {
         sessionFactory.inSession(session -> {
             session.getTransaction().begin();
             session.persist(convert(groupData));
+            session.getTransaction().commit();
+        });
+    }
+
+    public void СreateContact(ContactData contactData) {
+        sessionFactory.inSession(session -> {
+            session.getTransaction().begin();
+            session.persist(convert(contactData));
             session.getTransaction().commit();
         });
     }
