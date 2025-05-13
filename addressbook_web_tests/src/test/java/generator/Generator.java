@@ -14,6 +14,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 //--type contacts --output contacts.xml --format xml --count 4
 
@@ -49,24 +52,30 @@ public class Generator {
         if ("groups".equals(type)) {
             return generateGroups();
         } else if ("contacts".equals(type)) {
-            return generateContacts();
+            return generateContactsWithPhoto();
         } else {
             throw new IllegalArgumentException("Неизвестный тип данных " + type);
         }
     }
 
+    private Object generateData(Supplier<Object> dataSupplier) {
+        return Stream.generate(dataSupplier).limit(count).collect(Collectors.toList());
+    }
+
     private Object generateGroups() {
-        var result = new ArrayList<GroupData>();
-        for (int i = 0; i < count; i++) {
-            result.add(new GroupData()
-                    .withTitle(CommonFunctions.randomString(i * 5))
-                    .withName(CommonFunctions.randomString(i * 5))
-                    .withFooter(CommonFunctions.randomString(i * 5)));
-        }
-        return result;
+        return generateData(() -> new GroupData()
+                    .withTitle(CommonFunctions.randomString( 5))
+                    .withName(CommonFunctions.randomString(5))
+                    .withFooter(CommonFunctions.randomString(5)));
     }
 
     private Object generateContacts() {
+        return generateData(() -> new ContactData()
+                .withFirstName(CommonFunctions.randomString(4))
+                .withLastName(CommonFunctions.randomString(4)));
+    }
+
+    private Object generateContactsWithPhoto() {
         var result = new ArrayList<ContactData>();
         for (int i = 0; i < count; i++) {
             result.add(new ContactData()
@@ -88,12 +97,10 @@ public class Generator {
             try (var writer = new FileWriter(output)) {
                 writer.write(json);
             }
-        }
-        else if ("yaml".equals(format)) {
+        } else if ("yaml".equals(format)) {
             var mapper = new YAMLMapper();
             mapper.writeValue(new File(output), data);
-        }
-        else if ("xml".equals(format)) {
+        } else if ("xml".equals(format)) {
             var mapper = new XmlMapper();
             mapper.writeValue(new File(output), data);
         } else {
