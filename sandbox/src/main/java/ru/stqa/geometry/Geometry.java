@@ -5,19 +5,19 @@ import ru.stqa.geometry.figure.Square;
 import ru.stqa.geometry.figure.Triangle;
 
 import java.util.List;
+import java.util.Random;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 public class Geometry {
     public static void main(String[] args) {
-        var squares = List.of(new Square(7), new Square(3), new Square(5));
-//        for (Square square : squares) {
-//            Square.printSquareArea(square);
-//        }
-        Consumer<Square> print = square -> {
-            Square.printSquareArea(square);
-            Square.printPerimeter(square);
-        };
-        squares.forEach(print);
+        Supplier<Square> RandomSquare =() ->new Square(new Random().nextDouble(100));//генератор данных
+        var squares = Stream.generate(RandomSquare).limit(5);///поток объектов
+        squares.peek(Square::printSquareArea).forEach(Square::printPerimeter);
+    }}
+
+
 //        Square.printSquareArea(new Square(51.0));///передаем в функции объект Square с его свойствами
 //        Square.printSquareArea(new Square(80.));
 //        Square.printSquareArea(new Square(10.));
@@ -34,5 +34,3 @@ public class Geometry {
 //        Triangle.printTriangleArea(new Triangle(3.,3.,4.));
 //
 //    }
-
-    }}

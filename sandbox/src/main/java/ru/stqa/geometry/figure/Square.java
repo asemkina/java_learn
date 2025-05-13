@@ -20,6 +20,11 @@ public record Square (double side){
         System.out.println(text);
     }
 
+    public static void printPerimeter(Square s) {
+        String text = String.format("Периметр квадрата со стороной %f = %f", s.side, s.Perimeter());
+        System.out.println(text);
+    }
+
     public double Area() {/// нет слова statiс, значит функция вызывается в объекте, данные она берет из объекта, а не из указанных параметров
         return this.side * this.side;
     }
