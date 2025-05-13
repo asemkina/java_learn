@@ -97,7 +97,7 @@ public class Generator {
             var mapper = new XmlMapper();
             mapper.writeValue(new File(output), data);
         } else {
-            throw new IllegalArgumentException("Неверный формат данных" + format);
+            throw new IllegalArgumentException("Неверный формат данных " + format);
         }
 
     }
