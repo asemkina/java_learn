@@ -8,9 +8,9 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContactHelper extends HelperBase{
+public class ContactHelper extends HelperBase {
 
-    public ContactHelper (ApplicationManager manager){
+    public ContactHelper(ApplicationManager manager) {
         super(manager);
     }
 
@@ -45,10 +45,11 @@ public class ContactHelper extends HelperBase{
 
 
     private void selectContact(ContactData contact) {
-        click(By.xpath(String.format("input[value='%s']", contact.id())));
+        click(By.xpath(String.format("input[id='%s']", contact.id())));
     }
 
-    public void ModifyContact(ContactData ModifiedContact) {
+    public void ModifyContact(ContactData contact, ContactData ModifiedContact) {
+        selectContact(contact);
         initModifyContact();
         fillContactFormWithoutPhoto(ModifiedContact);
         submitContactModification();
@@ -71,29 +72,29 @@ public class ContactHelper extends HelperBase{
 
     private void fillContactFormWithoutPhoto(ContactData contact) {
         click(By.name("firstname"));
-        type(By.name("firstname"),contact.firstname());
+        type(By.name("firstname"), contact.firstname());
         click(By.name("lastname"));
-        type(By.name("lastname"),contact.lastname());
+        type(By.name("lastname"), contact.lastname());
         click(By.name("address"));
-        type(By.name("address"),contact.address());
+        type(By.name("address"), contact.address());
         click(By.name("home"));
-        type(By.name("home"),contact.home());
+        type(By.name("home"), contact.home());
         click(By.name("email"));
-        type(By.name("email"),contact.email());
+        type(By.name("email"), contact.email());
     }
 
     private void fillContactFormWithPhoto(ContactData contact) {
         click(By.name("firstname"));
-        type(By.name("firstname"),contact.firstname());
+        type(By.name("firstname"), contact.firstname());
         click(By.name("lastname"));
-        type(By.name("lastname"),contact.lastname());
+        type(By.name("lastname"), contact.lastname());
         click(By.name("address"));
-        type(By.name("address"),contact.address());
+        type(By.name("address"), contact.address());
         click(By.name("home"));
-        type(By.name("home"),contact.home());
+        type(By.name("home"), contact.home());
         click(By.name("email"));
-        type(By.name("email"),contact.email());
-        attach(By.name("photo"),contact.photo());
+        type(By.name("email"), contact.email());
+        attach(By.name("photo"), contact.photo());
     }
 
     private void initModifyContact() {
@@ -115,13 +116,16 @@ public class ContactHelper extends HelperBase{
 
     public List<ContactData> getListContact() {
         var contacts = new ArrayList<ContactData>();
-        var trs = manager.driver.findElements(By.name("entry"));
-        for (var tr : trs){
-            ///var firstName = tr.getText();
-            var checkbox = tr.findElement(By.name("selected[]"));
-            var id = checkbox.getDomAttribute("value");
-            contacts.add(new ContactData().withId(id).withFirstName("").withLastName("").withAddress("").withPhone("").withEmail(""));//.withFirstName(firstName));
+        var trs = manager.driver.findElements(By.cssSelector("[name=entry]"));
+        for (var tr : trs) {
+                var name1 = tr.findElement(By.cssSelector("td:nth-child(2)"));
+                 var lastname = name1.getText();
+                var name2 = tr.findElement(By.cssSelector("td:nth-child(3)"));
+               var firstname = name2.getText();
+                var checkbox = tr.findElement(By.name("selected[]"));
+                var id = checkbox.getDomAttribute("value");
+                contacts.add(new ContactData().withId(id).withLastName(lastname).withFirstName(firstname));
+            }
+            return contacts;
         }
-        return contacts;
     }
-}

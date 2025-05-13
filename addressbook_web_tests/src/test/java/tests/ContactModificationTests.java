@@ -19,11 +19,11 @@ public class ContactModificationTests extends TestBase {
         var oldContacts = app.hbm().getContactList();
         var rnd = new Random();
         var index = rnd.nextInt(oldContacts.size());
-        var testData = new ContactData().withFirstName("Татьяна");
-        app.contacts().ModifyContact(testData);
+        var testData = new ContactData().withFirstName("Татьяна").withLastName("Иванова");
+        app.contacts().ModifyContact(oldContacts.get(index), testData);
         var newContacts = app.hbm().getContactList();
         var expectedList = new ArrayList<>(oldContacts);
-        expectedList.set(index,testData.withId(oldContacts.get(index).id()).withFirstName(""));
+        expectedList.set(index,testData.withId(oldContacts.get(index).id()));
         Comparator<ContactData> compareById = (o1, o2) -> {
             return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
         };

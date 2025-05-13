@@ -1,5 +1,6 @@
 package tests;
 
+import common.CommonFunctions;
 import model.ContactData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,9 +12,9 @@ public class ContactDeleteTests extends TestBase {
 
     @Test
     public void deleteRandomContact() {
-//        if (app.hbm().getContactCount() == 0) {
-//            app.hbm().СreateContact(new ContactData("", "Имя", "Фамилия", "Адрес", "8888888888", "Email", ""));
-//        }
+        if (app.contacts().getCount() == 0) {
+            app.contacts().createContact(new ContactData("", "Имя", "Фамилия", "Адрес", "8888888888", "Email", "").withPhoto(CommonFunctions.randomFile("src/test/resources/images")));
+        }
         var oldContacts = app.contacts().getListContact();
         var rnd = new Random();
         var index = rnd.nextInt(oldContacts.size());
