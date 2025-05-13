@@ -15,6 +15,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+//--type contacts --output contacts.xml --format xml --count 4
+
 public class Generator {
 
     @Parameter(names = {"--type", "-t"})
@@ -87,11 +89,11 @@ public class Generator {
                 writer.write(json);
             }
         }
-        if ("yaml".equals(format)) {
+        else if ("yaml".equals(format)) {
             var mapper = new YAMLMapper();
             mapper.writeValue(new File(output), data);
         }
-        if ("xml".equals(format)) {
+        else if ("xml".equals(format)) {
             var mapper = new XmlMapper();
             mapper.writeValue(new File(output), data);
         } else {

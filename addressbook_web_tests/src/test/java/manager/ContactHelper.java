@@ -36,7 +36,7 @@ public class ContactHelper extends HelperBase{
     }
 
     public void removeContact(ContactData contact) {
-        openContactsPage();
+        //openContactsPage();
         selectContact(contact);
         click(By.xpath("//input[@value=\'Delete\']"));
         returnToHomePage();
@@ -45,7 +45,7 @@ public class ContactHelper extends HelperBase{
 
 
     private void selectContact(ContactData contact) {
-        click(By.cssSelector(String.format("input[value='%s']", contact.id())));
+        click(By.xpath(String.format("input[value='%s']", contact.id())));
     }
 
     public void ModifyContact(ContactData ModifiedContact) {
