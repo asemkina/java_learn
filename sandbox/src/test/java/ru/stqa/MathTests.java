@@ -1,3 +1,5 @@
+package ru.stqa;
+
 import org.junit.jupiter.api.Test;
 
 public class MathTests {

@@ -54,7 +54,7 @@ public class ContactCreationTests extends TestBase {
 
     public static List<ContactData> negativeContactProvider() {
         var result = new ArrayList<ContactData>(List.of(
-                new ContactData("", "Anna '", "", "", "", "", "")));
+                new ContactData("", "Anna '", "", "", "", "", "", "", "", "")));
         return result;
     }
 
@@ -69,7 +69,7 @@ public class ContactCreationTests extends TestBase {
         };
         newContacts.sort(compareById);
         var expectedList = new ArrayList<>(oldContacts);
-        expectedList.add(contact.withId(newContacts.get(newContacts.size() - 1).id()).withFirstName("").withLastName("").withAddress("").withPhone("").withEmail("").withPhoto(""));
+        expectedList.add(contact.withId(newContacts.get(newContacts.size() - 1).id()).withFirstName("").withLastName("").withAddress("").withHomePhone("").withEmail("").withPhoto(""));
         expectedList.sort(compareById);
         Assertions.assertEquals(newContacts, expectedList);
     }
