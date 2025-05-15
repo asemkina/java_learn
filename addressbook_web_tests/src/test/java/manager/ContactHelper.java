@@ -20,7 +20,7 @@ public class ContactHelper extends HelperBase {
     public void createContact(ContactData contact) {
         openContactsPage();
         click(By.linkText("add new"));
-        fillContactFormWithPhoto(contact);
+        fillContactFormWithoutPhoto(contact);
         click(By.xpath("(//input[@name=\'submit\'])[2]"));
         returnToHomePage();
     }
@@ -84,6 +84,14 @@ public class ContactHelper extends HelperBase {
         type(By.name("home"), contact.home());
         click(By.name("email"));
         type(By.name("email"), contact.email());
+        click(By.name("mobile"));
+        type(By.name("mobile"), contact.mobile());
+        click(By.name("work"));
+        type(By.name("work"), contact.work());
+        click(By.name("email2"));
+        type(By.name("email2"), contact.email2());
+        click(By.name("email3"));
+        type(By.name("email3"), contact.email3());
     }
 
     private void fillContactFormWithPhoto(ContactData contact) {
@@ -125,9 +133,11 @@ public class ContactHelper extends HelperBase {
                  var lastname = name1.getText();
                 var name2 = tr.findElement(By.cssSelector("td:nth-child(3)"));
                var firstname = name2.getText();
+            var phone = tr.findElement(By.cssSelector("td:nth-child(6)"));
+            var home = phone.getText();
                 var checkbox = tr.findElement(By.name("selected[]"));
                 var id = checkbox.getDomAttribute("value");
-                contacts.add(new ContactData().withId(id).withLastName(lastname).withFirstName(firstname));
+                contacts.add(new ContactData().withId(id).withLastName(lastname).withFirstName(firstname).withHomePhone(home));
             }
             return contacts;
         }
@@ -146,5 +156,15 @@ public class ContactHelper extends HelperBase {
 result.put(id, phones);
         }
         return result;
+    }
+
+    public String getAddress(ContactData contact) {
+        return manager.driver.findElement(By.xpath(
+                String.format("//input[@id='%s']/../../td[4]", contact.id()))).getText();
+    }
+
+    public String getEmails(ContactData contact) {
+        return manager.driver.findElement(By.xpath(
+                String.format("//input[@id='%s']/../../td[5]", contact.id()))).getText();
     }
 }

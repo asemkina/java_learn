@@ -48,7 +48,9 @@ public class HibernateHelper extends HelperBase {
                 .withEmail(record.email)
                 .withMobilePhone(record.mobile)
                 .withWorkPhone(record.work)
-                .withPhone2Phone(record.phone2);
+                .withPhone2Phone(record.phone2)
+                .withEmail2(record.email2)
+                .withEmail3(record.email3);
     }
 
     private static ContactRecord convert(ContactData data) {
@@ -56,7 +58,7 @@ public class HibernateHelper extends HelperBase {
         if ("".equals(id)) {
             id = "0";
         }
-        return new ContactRecord(Integer.parseInt(id), data.firstname(), data.lastname(), data.address(), data.home(), data.email(), data.mobile(), data.work(), data.phone2());
+        return new ContactRecord(Integer.parseInt(id), data.firstname(), data.lastname(), data.address(), data.home(), data.email(), data.mobile(), data.work(), data.phone2(), data.email2(), data.email3());
     }
 
     private static GroupRecord convert(GroupData data) {
@@ -99,7 +101,7 @@ public class HibernateHelper extends HelperBase {
         });
     }
 
-    public void сreateContact(ContactData contactData) {
+    public void createContact(ContactData contactData) {
         sessionFactory.inSession(session -> {
             session.getTransaction().begin();
             session.persist(convert(contactData));

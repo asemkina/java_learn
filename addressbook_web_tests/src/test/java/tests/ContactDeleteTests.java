@@ -13,7 +13,7 @@ public class ContactDeleteTests extends TestBase {
     @Test
     public void deleteRandomContact() {
         if (app.contacts().getCount() == 0) {
-            app.contacts().createContact(new ContactData("", "Имя", "Фамилия", "Адрес", "8888888888", "Email", "", "", "", "").withPhoto(CommonFunctions.randomFile("src/test/resources/images")));
+            app.contacts().createContact(new ContactData("", "Имя", "Фамилия", "Адрес", "8888888888", "Email", "", "", "", "","","").withPhoto(CommonFunctions.randomFile("src/test/resources/images")));
         }
         var oldContacts = app.contacts().getListContact();
         var rnd = new Random();
@@ -28,7 +28,7 @@ public class ContactDeleteTests extends TestBase {
     @Test
     public void deleteAllContacts() {
         if (app.hbm().getContactCount() == 0) {
-            app.hbm().сreateContact(new ContactData("", "jh", "lknjnj", "ддтж", "ьлщьл", "отоо", "", "", "", ""));
+            app.hbm().createContact(new ContactData("", "jh", "lknjnj", "ддтж", "ьлщьл", "отоо", "", "", "", "","",""));
         }
         app.contacts().removeAllContacts();
     }

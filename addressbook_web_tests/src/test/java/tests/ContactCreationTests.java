@@ -54,7 +54,7 @@ public class ContactCreationTests extends TestBase {
 
     public static List<ContactData> negativeContactProvider() {
         var result = new ArrayList<ContactData>(List.of(
-                new ContactData("", "Anna '", "", "", "", "", "", "", "", "")));
+                new ContactData("", "Anna '", "", "", "", "", "", "", "", "","","")));
         return result;
     }
 
