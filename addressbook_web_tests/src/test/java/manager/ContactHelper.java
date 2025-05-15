@@ -129,18 +129,18 @@ public class ContactHelper extends HelperBase {
         var contacts = new ArrayList<ContactData>();
         var trs = manager.driver.findElements(By.cssSelector("[name=entry]"));
         for (var tr : trs) {
-                var name1 = tr.findElement(By.cssSelector("td:nth-child(2)"));
-                 var lastname = name1.getText();
-                var name2 = tr.findElement(By.cssSelector("td:nth-child(3)"));
-               var firstname = name2.getText();
+            var name1 = tr.findElement(By.cssSelector("td:nth-child(2)"));
+            var lastname = name1.getText();
+            var name2 = tr.findElement(By.cssSelector("td:nth-child(3)"));
+            var firstname = name2.getText();
             var phone = tr.findElement(By.cssSelector("td:nth-child(6)"));
             var home = phone.getText();
-                var checkbox = tr.findElement(By.name("selected[]"));
-                var id = checkbox.getDomAttribute("value");
-                contacts.add(new ContactData().withId(id).withLastName(lastname).withFirstName(firstname).withHomePhone(home));
-            }
-            return contacts;
+            var checkbox = tr.findElement(By.name("selected[]"));
+            var id = checkbox.getDomAttribute("value");
+            contacts.add(new ContactData().withId(id).withLastName(lastname).withFirstName(firstname).withHomePhone(home));
         }
+        return contacts;
+    }
 
     public String getPhones(ContactData contact) {
         return manager.driver.findElement(By.xpath(
@@ -150,10 +150,10 @@ public class ContactHelper extends HelperBase {
     public Map<String, String> getPhones() {/// словарь
         var result = new HashMap<String, String>();
         List<WebElement> rows = manager.driver.findElements(By.name("entry"));
-        for (WebElement row : rows){
-            var id = row.findElement(By.name("input")).getDomAttribute("id");
+        for (WebElement row : rows) {
+            var id = row.findElement(By.tagName("input")).getDomAttribute("id");
             var phones = row.findElements(By.tagName("td")).get(5).getText();
-result.put(id, phones);
+            result.put(id, phones);
         }
         return result;
     }

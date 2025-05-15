@@ -12,6 +12,7 @@ public class ContactInfoTests extends TestBase {
     void testPhones() {
         if (app.hbm().getContactCount() == 0) {
             app.hbm().createContact(new ContactData("", "Name", "Lastname", "Address", "99999999", "Email", "", "88919199", "", "", "", ""));
+            app.contacts().returnToHomePage();
         }
         var contacts = app.hbm().getContactList();
         var expected = contacts.stream().collect(Collectors.toMap(ContactData::id, contact ->
