@@ -27,8 +27,7 @@ public class ContactHelper extends HelperBase {
 
     public void createContactInGroup(ContactData contact, GroupData group) {
         openContactsPage();
-        click(By.linkText("add new"));
-        fillContactFormWithPhoto(contact);
+        fillContactFormWithoutPhoto(contact);
         selectGroup(group);
         click(By.xpath("(//input[@name=\'submit\'])[2]"));
         returnToHomePage();
@@ -128,13 +127,40 @@ public class ContactHelper extends HelperBase {
         for (var tr : trs) {
             var name1 = tr.findElement(By.cssSelector("td:nth-child(2)"));
             var lastname = name1.getText();
-            var name2 = tr.findElement(By.cssSelector("td:nth-child(3)"));
+            var name2 = tr.findElement(By.xpath("td[3]"));
             var firstname = name2.getText();
-            var phone = tr.findElement(By.cssSelector("td:nth-child(6)"));
-            var home = phone.getText();
             var checkbox = tr.findElement(By.name("selected[]"));
             var id = checkbox.getDomAttribute("value");
-            contacts.add(new ContactData().withId(id).withLastName(lastname).withFirstName(firstname).withHomePhone(home));
+            var phone1 = tr.findElement(By.xpath("td[6]"));
+            var home1 = phone1.getText();
+            String[] parts = home1.split("\n");
+            if (parts.length == 3) {
+                var home = home1.split("\n")[0];
+                var mobile = home1.split("\n")[1];
+                var work = home1.split("\n")[2];
+                contacts.add(new ContactData()
+                        .withId(id)
+                        .withLastName(lastname)
+                        .withFirstName(firstname)
+                        .withHomePhone(home)
+                        .withMobilePhone(mobile)
+                        .withWorkPhone(work));
+            } else if (parts.length == 2) {
+                var home = home1.split("\n")[0];
+                var mobile = home1.split("\n")[1];
+                contacts.add(new ContactData()
+                        .withId(id)
+                        .withLastName(lastname)
+                        .withFirstName(firstname)
+                        .withHomePhone(home)
+                        .withMobilePhone(mobile));
+            } else {
+                contacts.add(new ContactData()
+                        .withId(id)
+                        .withLastName(lastname)
+                        .withFirstName(firstname)
+                        .withHomePhone(home1));
+            }
         }
         return contacts;
     }

@@ -95,9 +95,9 @@ public class HibernateHelper extends HelperBase {
 
     public void CreateGroup(GroupData groupData) {
         sessionFactory.inSession(session -> {
-            session.getTransaction().begin();
+            session.getTransaction().begin();// открываем транзакцию
             session.persist(convert(groupData));
-            session.getTransaction().commit();
+            session.getTransaction().commit();// закрываем транзакцию
         });
     }
 
