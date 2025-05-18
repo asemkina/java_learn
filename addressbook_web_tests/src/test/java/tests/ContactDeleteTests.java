@@ -16,11 +16,11 @@ public class ContactDeleteTests extends TestBase {
             app.hbm().createContact(new ContactData("", "Имя", "Фамилия", "Адрес", "8888888888", "Email", "", "", "", "", "", ""));
             app.contacts().returnToHomePage();
         }
-        var oldContacts = app.contacts().getListContact();
+        var oldContacts = app.hbm().getContactList();
         var rnd = new Random();
         var index = rnd.nextInt(oldContacts.size());
         app.contacts().removeContact(oldContacts.get(index));
-        var newContacts = app.contacts().getListContact();
+        var newContacts = app.hbm().getContactList();
         var expectedList = new ArrayList<>(oldContacts);
         expectedList.remove(index);
         Assertions.assertEquals(newContacts, expectedList);

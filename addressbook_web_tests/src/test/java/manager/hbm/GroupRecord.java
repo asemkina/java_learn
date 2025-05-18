@@ -6,12 +6,10 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "group_list")
-/// аннотация для привязки таблицы
+@Table(name = "group_list")  /// аннотация для привязки таблицы
 public class GroupRecord {
 
-    @Id
-    /// аннотация для указания первичного ключа в таблице
+    @Id    /// аннотация для указания первичного ключа в таблице
     @Column(name = "group_id")
     public int id;
     @Column(name = "group_name")

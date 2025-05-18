@@ -20,30 +20,6 @@ public class ContactCreationTests extends TestBase {
 
     public static List<ContactData> contactProvider() throws IOException {
         var result = new ArrayList<ContactData>();
-//        for (var firstName : List.of("", "Anna")) {
-//            for (var lastName : List.of("", "Semkina")) {
-//                for (var address : List.of("", "Bryansk")) {
-//                    for (var home : List.of("", "9999999999")) {
-//                        for (var email : List.of("", "sdnf@ksf.ru")) {
-//                            result.add(new ContactData().withFirstName(firstName)
-//                                    .withLastName(lastName)
-//                                    .withAddress(address)
-//                                    .withPhone(home)
-//                                    .withEmail(email)
-//                                    .withPhoto(CommonFunctions.randomFile("src/test/resources/images")));
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        for (int i = 0; i < 5; i++) {
-//            result.add(new ContactData()
-//                    .withFirstName(CommonFunctions.randomString(i * 4))
-//                    .withLastName(CommonFunctions.randomString(i * 4))
-//                    .withAddress(CommonFunctions.randomString(i * 4))
-//                    .withPhone(CommonFunctions.randomString(i * 4))
-//                    .withEmail(CommonFunctions.randomString(i * 4)));
-//        }
         //ObjectMapper mapper = new ObjectMapper();
         var mapper = new XmlMapper();
         var value = mapper.readValue(new File("contacts.xml"), new TypeReference<List<ContactData>>() {

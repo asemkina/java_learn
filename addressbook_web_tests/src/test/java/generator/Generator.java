@@ -58,22 +58,27 @@ public class Generator {
         }
     }
 
-    private Object generateData(Supplier<Object> dataSupplier) {
-        return Stream.generate(dataSupplier).limit(count).collect(Collectors.toList());
-    }
+//    private Object generateData(Supplier<Object> dataSupplier) {
+//        return Stream.generate(dataSupplier).limit(count).collect(Collectors.toList());
+//    }
 
     private Object generateGroups() {
-        return generateData(() -> new GroupData()
+//        return generateData(() -> new GroupData()
+        var result = new ArrayList<GroupData>();
+        for (int i = 0; i < count; i++) {
+            result.add(new GroupData()
                     .withTitle(CommonFunctions.randomString( 5))
                     .withName(CommonFunctions.randomString(5))
                     .withFooter(CommonFunctions.randomString(5)));
     }
-
-    private Object generateContacts() {
-        return generateData(() -> new ContactData()
-                .withFirstName(CommonFunctions.randomString(4))
-                .withLastName(CommonFunctions.randomString(4)));
+        return result;
     }
+
+//    private Object generateContacts() {
+//        return generateData(() -> new ContactData()
+//                .withFirstName(CommonFunctions.randomString(4))
+//                .withLastName(CommonFunctions.randomString(4)));
+//    }
 
     private Object generateContactsWithPhoto() {
         var result = new ArrayList<ContactData>();
