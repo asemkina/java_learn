@@ -12,8 +12,9 @@ public class ContactDeleteTests extends TestBase {
 
     @Test
     public void deleteRandomContact() {
-        if (app.contacts().getCount() == 0) {
-            app.contacts().createContact(new ContactData("", "Имя", "Фамилия", "Адрес", "8888888888", "Email", "", "", "", "","","").withPhoto(CommonFunctions.randomFile("src/test/resources/images")));
+        if (app.hbm().getContactCount() == 0) {
+            app.hbm().createContact(new ContactData("", "Имя", "Фамилия", "Адрес", "8888888888", "Email", "", "", "", "","",""));
+            app.contacts().returnToHomePage();
         }
         var oldContacts = app.contacts().getListContact();
         var rnd = new Random();

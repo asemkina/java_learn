@@ -39,7 +39,6 @@ public class ContactHelper extends HelperBase {
     }
 
     public void removeContact(ContactData contact) {
-        //openContactsPage();
         selectContact(contact);
         click(By.xpath("//input[@value=\'Delete\']"));
         returnToHomePage();

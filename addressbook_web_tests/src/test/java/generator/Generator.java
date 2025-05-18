@@ -84,7 +84,12 @@ public class Generator {
                     .withAddress(CommonFunctions.randomString(i * 4))
                     .withHomePhone(CommonFunctions.randomString(i * 4))
                     .withEmail(CommonFunctions.randomString(i * 4))
-                    .withPhoto(CommonFunctions.randomFile("src/test/resources/images")));
+                    .withPhoto(CommonFunctions.randomFile("src/test/resources/images"))
+                    .withMobilePhone(CommonFunctions.randomString(i * 4))
+                    .withWorkPhone(CommonFunctions.randomString(i * 4))
+                    .withEmail2(CommonFunctions.randomString(i * 4))
+                    .withEmail3(CommonFunctions.randomString(i * 4))
+                    .withPhone2Phone(CommonFunctions.randomString(i * 4)));
         }
         return result;
     }
