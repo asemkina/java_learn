@@ -42,17 +42,15 @@ public class ContactHelper extends HelperBase {
         selectContact(contact);
         click(By.xpath("//input[@value=\'Delete\']"));
         returnToHomePage();
-        ///homePageRemoveContact();
     }
 
 
     private void selectContact(ContactData contact) {
-        click(By.xpath(String.format("input[id='%s']", contact.id())));
+        click(By.cssSelector(String.format("input[value='%s']", contact.id())));
     }
 
     public void ModifyContact(ContactData contact, ContactData ModifiedContact) {
-        selectContact(contact);
-        initModifyContact();
+        initModifyContact(contact);
         fillContactFormWithoutPhoto(ModifiedContact);
         submitContactModification();
         returnToHomePage();
@@ -107,8 +105,8 @@ public class ContactHelper extends HelperBase {
         attach(By.name("photo"), contact.photo());
     }
 
-    private void initModifyContact() {
-        click(By.xpath("//img[@alt=\'Edit\']"));
+    private void initModifyContact(ContactData contact) {
+        click(By.cssSelector(String.format("a[href^='edit.php?id=%s']", contact.id())));
     }
 
     public int getCount() {

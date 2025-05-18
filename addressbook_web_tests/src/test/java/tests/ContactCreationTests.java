@@ -123,8 +123,7 @@ public class ContactCreationTests extends TestBase {
                                     .withAddress(address)
                                     .withHomePhone(home)
                                     .withEmail(email));
-                                    //.withPhoto(CommonFunctions.randomFile("src/test/resources/images")));
-                        }
+                                                            }
                     }
                 }
             }
