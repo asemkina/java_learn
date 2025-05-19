@@ -40,6 +40,17 @@ public class ContactHelper extends HelperBase {
         returnToGroupPage(group);
     }
 
+    public void removeContactInGroup(ContactData contact, GroupData group) {
+        selectGroupOnHomePage(group);
+        selectContact(contact);
+        click(By.cssSelector(String.format("input[value='%s']", group.id())));
+        returnToHomePage();
+    }
+
+    private void selectGroupOnHomePage(GroupData group) {
+        new Select(manager.driver.findElement(By.name("group"))).selectByValue(group.id());
+    }
+
     private void returnToGroupPage(GroupData group) {
         click(By.cssSelector(String.format("a[href^='./?group=%s']", group.id())));
             }
@@ -53,7 +64,6 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//input[@value=\'Delete\']"));
         returnToHomePage();
     }
-
 
     private void selectContact(ContactData contact) {
         click(By.cssSelector(String.format("input[value='%s']", contact.id())));

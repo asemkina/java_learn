@@ -2,12 +2,14 @@ package tests;
 
 import manager.ApplicationManager;
 import model.ContactData;
+import model.GroupData;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.Properties;
 
 public class TestBase {
@@ -26,6 +28,20 @@ public class TestBase {
                 .withEmail(contact.email())
                 .withEmail2(contact.email2())
                 .withEmail3(contact.email3());
+    }
+
+    protected static Comparator<ContactData> getContactDataComparator() {
+        Comparator<ContactData> compareById = (o1, o2) -> {
+            return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
+        };
+        return compareById;
+    }
+
+    protected static Comparator<GroupData> getGroupDataComparator() {
+        Comparator<GroupData> compareById = (o1, o2) -> {
+            return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
+        };
+        return compareById;
     }
 
     @BeforeEach

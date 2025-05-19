@@ -26,9 +26,7 @@ public class ContactModificationTests extends TestBase {
         var newContacts = app.hbm().getContactList();
         var expectedList = new ArrayList<>(oldContacts);
         expectedList.set(index, testData.withId(oldContacts.get(index).id()));
-        Comparator<ContactData> compareById = (o1, o2) -> {
-            return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
-        };
+        Comparator<ContactData> compareById = getContactDataComparator();
         newContacts.sort(compareById);
         expectedList.sort((compareById));
         Assertions.assertEquals(expectedList, newContacts);
@@ -42,6 +40,7 @@ public class ContactModificationTests extends TestBase {
         }
         if (app.hbm().getGroupCount() == 0) {
             app.hbm().CreateGroup(new GroupData("", "Group1", "Group name", "Group footer"));
+            app.contacts().returnToHomePage();
         }
         var rndContact = new Random();
         var indexContact = rndContact.nextInt(app.hbm().getContactList().size());
@@ -55,9 +54,7 @@ public class ContactModificationTests extends TestBase {
         } else {
             app.contacts().addContactInGroup(contact, group);
             var newRelated = app.hbm().getContactInGroup(group);
-            Comparator<ContactData> compareById = (o1, o2) -> {
-                return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
-            };
+            Comparator<ContactData> compareById = getContactDataComparator();
             newRelated.sort(compareById);
             var expectedList = new ArrayList<>(oldRelated);
             expectedList.add(getContactData(contact));

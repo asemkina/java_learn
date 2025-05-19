@@ -81,7 +81,7 @@ public class ContactCreationTests extends TestBase {
         var oldRelated = app.hbm().getContactInGroup(group);
         app.contacts().createContactInGroup(contact, group);
         var newRelated = app.hbm().getContactInGroup(group);
-        Assertions.assertEquals(oldRelated.size()+1, newRelated);
+        Assertions.assertEquals(oldRelated.size()+1, newRelated.size());
     }
 
 
@@ -120,9 +120,7 @@ public class ContactCreationTests extends TestBase {
         var oldContacts = app.hbm().getContactList();
         app.contacts().createContact(contact);
         var newContacts = app.hbm().getContactList();
-        Comparator<ContactData> compareById = (o1, o2) -> {
-            return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
-        };
+        Comparator<ContactData> compareById = getContactDataComparator();
         newContacts.sort(compareById);
         var maxId = (newContacts.get(newContacts.size() - 1).id());
         var expectedList = new ArrayList<>(oldContacts);
