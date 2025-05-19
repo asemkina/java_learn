@@ -40,29 +40,29 @@ public class ContactModificationTests extends TestBase {
             app.hbm().createContact(new ContactData("", "Name", "Lastname", "Address", "Phone", "Email", "", "", "", "", "", ""));
             app.contacts().returnToHomePage();
         }
-//        var contact = app.hbm().getContactList().get(0);
         if (app.hbm().getGroupCount() == 0) {
             app.hbm().CreateGroup(new GroupData("", "Group1", "Group name", "Group footer"));
         }
-        var group = app.hbm().getGroupList().get(0);
+        var rndContact = new Random();
+        var indexContact = rndContact.nextInt(app.hbm().getContactList().size());
+        var rndGroup = new Random();
+        var indexGroup = rndGroup.nextInt(app.hbm().getGroupList().size());
+        var group = app.hbm().getGroupList().get(indexGroup);
+        var contact = app.hbm().getContactList().get(indexContact);
         var oldRelated = app.hbm().getContactInGroup(group);
-//        var rnd = new Random();
-//        var index = rnd.nextInt(oldRelated.size());
-//        var contact = app.hbm().getContactList().get(index);
-//        var testData = new ContactData().withFirstName(CommonFunctions.randomString(7)).withLastName(CommonFunctions.randomString(10));
-//        app.contacts().ModifyContact(oldContacts.get(index), testData);
-        var contact = app.hbm().getContactList().get(0);
-        app.contacts().addContactInGroup(contact, group);
-        var newRelated = app.hbm().getContactInGroup(group);
-//        Comparator<ContactData> compareById = (o1, o2) -> {
-//            return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
-//        };
-//        newRelated.sort(compareById);
-//        var expectedList = new ArrayList<>(oldRelated);
-//        var testData = new ContactData();
-//        expectedList.set(0, testData.withId(getCo.get(contact.id());
-        //expectedList.set(index, testData.withId(oldRelated.get(0).id()));
-//        expectedList.sort(compareById);
-        Assertions.assertEquals(oldRelated.size()+1, newRelated.size());
+        if (oldRelated.contains(contact)) {
+            System.out.println(String.format("Контакт id = %s уже есть в группе id = %s", contact.id(), group.id()));
+        } else {
+            app.contacts().addContactInGroup(contact, group);
+            var newRelated = app.hbm().getContactInGroup(group);
+            Comparator<ContactData> compareById = (o1, o2) -> {
+                return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
+            };
+            newRelated.sort(compareById);
+            var expectedList = new ArrayList<>(oldRelated);
+            expectedList.add(getContactData(contact));
+            expectedList.sort(compareById);
+            Assertions.assertEquals(expectedList, newRelated);
+        }
     }
 }

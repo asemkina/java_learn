@@ -37,8 +37,12 @@ public class ContactHelper extends HelperBase {
         selectContact(contact);
         new Select(manager.driver.findElement(By.name("to_group"))).selectByValue(group.id());
         click(By.xpath("//input[@value=\'Add to\']"));
-        returnToHomePage();
+        returnToGroupPage(group);
     }
+
+    private void returnToGroupPage(GroupData group) {
+        click(By.cssSelector(String.format("a[href^='./?group=%s']", group.id())));
+            }
 
     private void selectGroup(GroupData group) {
         new Select(manager.driver.findElement(By.name("new_group"))).selectByValue(group.id());
