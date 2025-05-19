@@ -138,36 +138,10 @@ public class ContactHelper extends HelperBase {
             var firstname = name2.getText();
             var checkbox = tr.findElement(By.name("selected[]"));
             var id = checkbox.getDomAttribute("value");
-            var phone1 = tr.findElement(By.xpath("td[6]"));
-            var home1 = phone1.getText();
-            String[] parts = home1.split("\n");
-            if (parts.length == 3) {
-                var home = home1.split("\n")[0];
-                var mobile = home1.split("\n")[1];
-                var work = home1.split("\n")[2];
-                contacts.add(new ContactData()
-                        .withId(id)
-                        .withLastName(lastname)
-                        .withFirstName(firstname)
-                        .withHomePhone(home)
-                        .withMobilePhone(mobile)
-                        .withWorkPhone(work));
-            } else if (parts.length == 2) {
-                var home = home1.split("\n")[0];
-                var mobile = home1.split("\n")[1];
-                contacts.add(new ContactData()
-                        .withId(id)
-                        .withLastName(lastname)
-                        .withFirstName(firstname)
-                        .withHomePhone(home)
-                        .withMobilePhone(mobile));
-            } else {
-                contacts.add(new ContactData()
-                        .withId(id)
-                        .withLastName(lastname)
-                        .withFirstName(firstname)
-                        .withHomePhone(home1));
-            }
+            contacts.add(new ContactData()
+                            .withId(id)
+                            .withLastName(lastname)
+                            .withFirstName(firstname));
         }
         return contacts;
     }
