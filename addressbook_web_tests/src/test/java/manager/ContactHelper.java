@@ -38,13 +38,15 @@ public class ContactHelper extends HelperBase {
         new Select(manager.driver.findElement(By.name("to_group"))).selectByValue(group.id());
         click(By.xpath("//input[@value=\'Add to\']"));
         returnToGroupPage(group);
+        new Select(manager.driver.findElement(By.name("group"))).selectByValue("");
     }
 
     public void removeContactInGroup(ContactData contact, GroupData group) {
         selectGroupOnHomePage(group);
         selectContact(contact);
-        click(By.cssSelector(String.format("input[value='%s']", group.id())));
+        click(By.cssSelector(String.format("input[value='Remove from \"%s\"']", group.group1())));
         returnToHomePage();
+        new Select(manager.driver.findElement(By.name("group"))).selectByValue("");
     }
 
     private void selectGroupOnHomePage(GroupData group) {
