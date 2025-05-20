@@ -187,4 +187,8 @@ public class ContactHelper extends HelperBase {
         return manager.driver.findElement(By.xpath(
                 String.format("//input[@id='%s']/../../td[5]", contact.id()))).getText();
     }
+    public String getId(ContactData contact) {
+        return manager.driver.findElement(By.xpath(
+                String.format("//input[@id='%s']/../../td[1]", contact.id()))).getText();
+    }
 }
