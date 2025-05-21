@@ -66,7 +66,7 @@ public class ContactModificationTests extends TestBase {
         Comparator<ContactData> compareById = getContactDataComparator();
         newRelated.sort(compareById);
         var expectedList = new ArrayList<>(oldRelated);
-        expectedList.add(getContactData(contact));
+        expectedList.add(contact);
         expectedList.sort(compareById);
         Assertions.assertEquals(expectedList, newRelated);
     }
