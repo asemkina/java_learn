@@ -1,4 +1,5 @@
 package ru.stqa.mantis.tests;
+//java -Dworking.directory=. -jar james-server-jpa-app.jar  запуск сервера
 //java -cp "james-server-jpa-app.lib/*" org.apache.james.cli.ServerCmd
 
 import org.junit.jupiter.api.Test;
