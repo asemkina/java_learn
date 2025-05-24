@@ -17,7 +17,7 @@ public class UserRegistrationTests extends TestBase {
         var password = String.format("%s", CommonFunctions.randomString(10));
 
         //создать пользователя (адрес на почтовом сервере)(JamesHelper)
-        app.jamesCli().addUser(email, password);
+        app.jamesApi().addUser(email, password);
 
         //открываем браузер, заполняем форму создания и отправляем (браузер)
 
