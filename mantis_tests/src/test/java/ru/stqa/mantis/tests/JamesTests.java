@@ -1,4 +1,5 @@
 package ru.stqa.mantis.tests;
+//cd "C:\develop\james-server-jpa-guice" переход в папку
 //java -Dworking.directory=. -jar james-server-jpa-app.jar  запуск сервера
 //java -cp "james-server-jpa-app.lib/*" org.apache.james.cli.ServerCmd
 
