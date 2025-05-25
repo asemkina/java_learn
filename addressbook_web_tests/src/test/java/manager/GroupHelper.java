@@ -1,5 +1,6 @@
 package manager;
 
+import io.qameta.allure.Step;
 import model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -8,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class GroupHelper extends HelperBase{
+public class GroupHelper extends HelperBase {
 
-    public GroupHelper (ApplicationManager manager){
+    public GroupHelper(ApplicationManager manager) {
         super(manager);
     }
 
@@ -22,6 +23,7 @@ public class GroupHelper extends HelperBase{
         returnToGroupsPage();
     }
 
+    @Step
     public void removeGroup(GroupData group) {
         openGroupsPage();
         selectGroup(group);
@@ -101,7 +103,7 @@ public class GroupHelper extends HelperBase{
         var groups = new ArrayList<GroupData>();
         var spans = manager.driver.findElements(By.cssSelector("span.group"));
         return spans.stream()
-                .map(span ->{
+                .map(span -> {
                     var group1 = span.getText();
                     var checkbox = span.findElement(By.name("selected[]"));
                     var id = checkbox.getDomAttribute("value");
