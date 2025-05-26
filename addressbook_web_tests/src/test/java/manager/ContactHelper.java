@@ -1,5 +1,6 @@
 package manager;
 
+import io.qameta.allure.Step;
 import model.ContactData;
 import model.GroupData;
 import org.openqa.selenium.By;
@@ -90,6 +91,7 @@ public class ContactHelper extends HelperBase {
         click(By.name("update"));
     }
 
+    @Step
     private void fillContactFormWithoutPhoto(ContactData contact) {
         click(By.name("firstname"));
         type(By.name("firstname"), contact.firstname());

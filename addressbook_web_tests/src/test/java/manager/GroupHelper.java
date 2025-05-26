@@ -15,6 +15,7 @@ public class GroupHelper extends HelperBase {
         super(manager);
     }
 
+    @Step
     public void CreateGroup(GroupData group) {
         openGroupsPage();
         initGroupCreation();
@@ -58,6 +59,7 @@ public class GroupHelper extends HelperBase {
         click(By.name("new"));
     }
 
+    @Step
     private void fillGroupForm(GroupData group) {
         type(By.name("group_name"), group.group1());
         type(By.name("group_header"), group.name());
