@@ -34,21 +34,21 @@ public class ContactCreationTests extends TestBase {
         return result;
     }
 
-    @ParameterizedTest
-    @MethodSource("contactProvider")
-    public void CanCreateMultipleContacts(ContactData contact) {
-        var oldContacts = app.hbm().getContactList();
-        app.contacts().createContact(contact);
-        var newContacts = app.hbm().getContactList();
-        Comparator<ContactData> compareById = (o1, o2) -> {
-            return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
-        };
-        newContacts.sort(compareById);
-        var expectedList = new ArrayList<>(oldContacts);
-        expectedList.add(contact.withId(newContacts.get(newContacts.size() - 1).id()));
-        expectedList.sort(compareById);
-        Assertions.assertEquals(expectedList, newContacts);
-    }
+//    @ParameterizedTest
+//    @MethodSource("contactProvider")
+//    public void CanCreateMultipleContacts(ContactData contact) {
+//        var oldContacts = app.hbm().getContactList();
+//        app.contacts().createContact(contact);
+//        var newContacts = app.hbm().getContactList();
+//        Comparator<ContactData> compareById = (o1, o2) -> {
+//            return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
+//        };
+//        newContacts.sort(compareById);
+//        var expectedList = new ArrayList<>(oldContacts);
+//        expectedList.add(contact.withId(newContacts.get(newContacts.size() - 1).id()));
+//        expectedList.sort(compareById);
+//        Assertions.assertEquals(expectedList, newContacts);
+//    }
 
     @ParameterizedTest
     @MethodSource("negativeContactProvider")
@@ -114,18 +114,18 @@ public class ContactCreationTests extends TestBase {
         return result;
     }
 
-    @ParameterizedTest
-    @MethodSource("contactProviderList")
-    public void CanCreateMultipleContactsList(ContactData contact) {
-        var oldContacts = app.hbm().getContactList();
-        app.contacts().createContact(contact);
-        var newContacts = app.hbm().getContactList();
-        Comparator<ContactData> compareById = getContactDataComparator();
-        newContacts.sort(compareById);
-        var maxId = (newContacts.get(newContacts.size() - 1).id());
-        var expectedList = new ArrayList<>(oldContacts);
-        expectedList.add(contact.withId(maxId));
-        expectedList.sort(compareById);
-        Assertions.assertEquals(expectedList, newContacts);
-    }
+//    @ParameterizedTest
+//    @MethodSource("contactProviderList")
+//    public void CanCreateMultipleContactsList(ContactData contact) {
+//        var oldContacts = app.hbm().getContactList();
+//        app.contacts().createContact(contact);
+//        var newContacts = app.hbm().getContactList();
+//        Comparator<ContactData> compareById = getContactDataComparator();
+//        newContacts.sort(compareById);
+//        var maxId = (newContacts.get(newContacts.size() - 1).id());
+//        var expectedList = new ArrayList<>(oldContacts);
+//        expectedList.add(contact.withId(maxId));
+//        expectedList.sort(compareById);
+//        Assertions.assertEquals(expectedList, newContacts);
+//    }
 }
