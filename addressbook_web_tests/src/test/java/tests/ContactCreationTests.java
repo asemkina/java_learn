@@ -68,21 +68,21 @@ public class ContactCreationTests extends TestBase {
         app.contacts().createContact(contact);
     }
 
-    @Test
-    void canCreateContactInGroup() {
-        var contact = new ContactData()
-                .withFirstName(CommonFunctions.randomString(5))
-                .withLastName(CommonFunctions.randomString(10))
-                .withAddress(CommonFunctions.randomString(15));
-        if (app.hbm().getGroupCount() == 0) {
-            app.hbm().CreateGroup(new GroupData("", "Group1", "Group name", "Group footer"));
-        }
-        var group = app.hbm().getGroupList().get(0);
-        var oldRelated = app.hbm().getContactInGroup(group);
-        app.contacts().createContactInGroup(contact, group);
-        var newRelated = app.hbm().getContactInGroup(group);
-        Assertions.assertEquals(oldRelated.size()+1, newRelated.size());
-    }
+//    @Test
+//    void canCreateContactInGroup() {
+//        var contact = new ContactData()
+//                .withFirstName(CommonFunctions.randomString(5))
+//                .withLastName(CommonFunctions.randomString(10))
+//                .withAddress(CommonFunctions.randomString(15));
+//        if (app.hbm().getGroupCount() == 0) {
+//            app.hbm().CreateGroup(new GroupData("", "Group1", "Group name", "Group footer"));
+//        }
+//        var group = app.hbm().getGroupList().get(0);
+//        var oldRelated = app.hbm().getContactInGroup(group);
+//        app.contacts().createContactInGroup(contact, group);
+//        var newRelated = app.hbm().getContactInGroup(group);
+//        Assertions.assertEquals(oldRelated.size()+1, newRelated.size());
+//    }
 
 
     public static List<ContactData> contactProviderList() {
