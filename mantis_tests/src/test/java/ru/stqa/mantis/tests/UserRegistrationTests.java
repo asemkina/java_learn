@@ -24,7 +24,7 @@ public class UserRegistrationTests extends TestBase {
         app.newaccount().loginNewAccount(username, email);
 
         //получаем (ждем) письмо (Mailhelper)
-        var messages = app.mail().receive(email, password, Duration.ofSeconds(180));
+        var messages = app.mail().receive(email, password, Duration.ofSeconds(120));
         System.out.println(messages);
 
         //извлекаем ссылку
@@ -42,6 +42,8 @@ public class UserRegistrationTests extends TestBase {
             //проверяем, что пользователь может залогиниться (HttpSessionHelper)
             app.http().login(username, password);
             Assertions.assertTrue(app.http().loggedIn());
+        } else {
+            throw new RuntimeException("The registration confirmation link was not found in the email");
         }
     }
 }
